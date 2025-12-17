@@ -1,0 +1,1 @@
+const axios=require("axios");module.exports=async(req,res)=>{try{const{filename,contentBase64,password}=req.body;const r=await axios.post("https://api.pdf.co/v1/pdf/security/remove",{file:contentBase64,password,name:"unlocked-"+filename},{headers:{"x-api-key":process.env.PDFCO_API_KEY}});res.status(200).json({url:r.data.url});}catch(e){res.status(500).json({error:e.message});}};
